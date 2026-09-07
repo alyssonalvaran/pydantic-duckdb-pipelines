@@ -4,7 +4,7 @@ Software applications often emit event logs as flexible, unstructured JSON paylo
 
 This workshop repository provides a hands-on, self-contained project for building local data pipelines using **Python**, **Pydantic**, and **DuckDB**. You will learn how to bridge the disconnect by ingesting synthetic JSON payloads, enforcing strict schemas, validating data early, and querying the standardized output using SQL, all with zero infrastructure overhead.
 
-## 🚀 What You Will Learn
+## What You Will Learn
 
 * **Schema Enforcement:** Use Pydantic to validate messy, unstructured JSON event payloads and catch data contract violations early.
 * **Local Data Warehousing:** Leverage DuckDB to store, transform, and query structured event data locally without managing heavy database servers or Docker containers.
@@ -12,7 +12,7 @@ This workshop repository provides a hands-on, self-contained project for buildin
 
 ---
 
-## 🛠️ Prerequisites
+## Prerequisites
 
 * **Python 3.10+** installed on your machine.
 * A basic understanding of Python (dictionaries, classes/dataclasses, and functions).
@@ -20,7 +20,7 @@ This workshop repository provides a hands-on, self-contained project for buildin
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 pydantic-duckdb-pipelines/
@@ -33,7 +33,7 @@ pydantic-duckdb-pipelines/
 └── README.md
 ```
 
-## ⚙️ Quick Start
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -63,6 +63,39 @@ Execute the main script to process the raw JSON logs and load them into DuckDB:
 python pipeline.py
 ```
 
-## 📝 License
+---
+
+## Workshop Outline
+
+This hands-on session is structured into four progressive modules, designed to take participants from messy input data to query-ready analytics:
+
+* **Module 1: The Problem with Unstructured JSON**
+  * Understanding the friction between flexible application logs and rigid analytical data requirements.
+  * Examining sample raw payloads and identifying common data drift and corruption issues.
+
+* **Module 2: Schema Enforcement with Pydantic**
+  * Introduction to data contracts and validation in Python.
+  * Writing Pydantic models to enforce strict types, field constraints, and custom validators.
+  * Handling validation errors gracefully without breaking the ingestion pipeline.
+
+* **Module 3: Building the Local Pipeline**
+  * Designing a modular Python script to read, validate, and transform raw JSON logs.
+  * Preparing normalized data structures ready for analytical storage.
+
+* **Module 4: Analytics with DuckDB**
+  * Loading validated records into an embedded DuckDB instance with zero infrastructure overhead.
+  * Writing analytical SQL queries to extract insights, aggregate metrics, and inspect pipeline performance.
+
+## Next Steps
+
+Finished the core workshop? Here are a few ways you can extend the project and take your skills further:
+
+* **Automate with Cron or Airflow:** Turn the static python script into a scheduled pipeline that runs hourly or daily against a live event stream.
+* **Add Parquet Exports:** Modify the DuckDB load step to export your validated data into partitioned Apache Parquet files for cold storage or integration with other tools (like Pandas or Polars).
+* **Implement Error Dead-Letter Queues:** Instead of dropping or crashing on invalid Pydantic payloads, route failing records into a separate `error_log.json` file for debugging and schema evolution tracking.
+* **Scale to MotherDuck:** Swap your local DuckDB file connection for a MotherDuck cloud connection to see how local analytics code transitions to a hybrid cloud environment.
+* **Build a Visualization:** Connect your DuckDB analytical queries to a lightweight dashboarding tool like Streamlit or Grafana to visualize user signups and plan breakdowns.
+
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/alyssonalvaran/pydantic-duckdb-pipelines/blob/main/LICENSE) file for details.
