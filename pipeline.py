@@ -6,6 +6,7 @@ import json
 import logging
 from typing import List, Dict, Any
 import duckdb
+import pandas as pd
 from pydantic import ValidationError
 
 from models.events import UserSignupEvent
@@ -58,21 +59,17 @@ def validate_events(raw_events: List[Dict[str, Any]]) -> List[UserSignupEvent]:
 def load_to_duckdb(events: List[UserSignupEvent], db_path: str = ":memory:") -> duckdb.DuckDBPyConnection:
     """
     Loads validated events into a DuckDB database for querying.
-    
-    Args:
-        events: Validated Pydantic event models.
-        db_path: Path to DuckDB file (defaults to in-memory).
-        
-    Returns:
-        An active DuckDB connection with the populated table.
     """
     conn = duckdb.connect(db_path)
     
-    # Convert Pydantic models back to standard dictionaries for DuckDB ingestion
-    validated_data = [event.model_dump() for event in events]
+    # Convert Pydantic models to a list of dicts
+    raw_list = [event.model_dump() for event in events]
     
-    if validated_data:
-        # DuckDB can seamlessly query Python variables directly
+    if raw_list:
+        # Convert the list of dicts to a Pandas DataFrame
+        validated_data = pd.DataFrame(raw_list) 
+        
+        # DuckDB seamlessly reads the Pandas DataFrame 'validated_data' from the local scope
         conn.execute("CREATE TABLE signups AS SELECT * FROM validated_data")
         logging.info(f"Successfully loaded {len(validated_data)} records into DuckDB.")
     else:
