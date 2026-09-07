@@ -25,9 +25,10 @@ This workshop repository provides a hands-on, self-contained project for buildin
 ```text
 pydantic-duckdb-pipelines/
 ├── data/
-│   └── raw_events.json        # Synthetic JSON event payloads
+│   └── raw_events.json        # Generated synthetic JSON event payloads
 ├── models/
 │   └── events.py              # Pydantic schemas for event validation
+├── generate_data.py           # Script to generate realistic mock data with Faker
 ├── pipeline.py                # Main ingestion and transformation script
 ├── requirements.txt           # Project dependencies
 └── README.md
@@ -55,9 +56,17 @@ source venv/bin/activate  # On Windows, use: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 4. Run the Pipeline
+### 4. Generate Synthetic Data
 
-Execute the main script to process the raw JSON logs and load them into DuckDB:
+Run the generator script to populate your data/directory with realistic mock event logs. This script intentionally injects a controlled error rate to test the pipeline's validation logic:
+
+```bash
+python generate_data.py
+```
+
+### 5. Run the Pipeline
+
+Execute the main script to process the generated JSON logs, drop malformed records, and load the clean data into DuckDB for analytics:
 
 ```bash
 python pipeline.py

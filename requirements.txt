@@ -1,5 +1,6 @@
 annotated-types==0.8.0
 duckdb==1.5.5
+Faker==40.38.0
 numpy==2.5.3
 pandas==3.0.5
 pydantic==2.13.5
