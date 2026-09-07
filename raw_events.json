@@ -1,0 +1,46 @@
+[
+  {
+    "event_id": "550e8400-e29b-41d4-a716-446655440000",
+    "event_name": "user.signup",
+    "timestamp": "2026-09-07T08:15:30Z",
+    "tenant_id": "acme",
+    "user_id": 1042,
+    "plan_type": "pro",
+    "referral_source": "google"
+  },
+  {
+    "event_id": "782f9511-f39c-42e5-b827-557766551111",
+    "event_name": "user.signup",
+    "timestamp": "2026-09-07T08:42:12Z",
+    "tenant_id": "admin",
+    "user_id": 1043,
+    "plan_type": "enterprise",
+    "referral_source": null
+  },
+  {
+    "event_id": "993a1234-a12b-33c4-d556-778899002222",
+    "event_name": "user.signup",
+    "timestamp": "2026-09-07T09:05:00Z",
+    "tenant_id": "test",
+    "user_id": 1044,
+    "plan_type": "premium", 
+    "referral_source": "twitter"
+  },
+  {
+    "event_id": "112b4567-b23c-44d5-e667-889900113333",
+    "event_name": "user.signup",
+    "timestamp": "2026-09-07T09:15:45Z",
+    "tenant_id": "startup-inc",
+    "user_id": "should-be-int",
+    "plan_type": "free",
+    "referral_source": "producthunt"
+  },
+  {
+    "event_id": "223c5678-c34d-55e6-f778-990011224444",
+    "event_name": "user.signup",
+    "timestamp": "2026-09-07T10:00:22Z",
+    "tenant_id": "test",
+    "user_id": 1045,
+    "plan_type": "free"
+  }
+]
